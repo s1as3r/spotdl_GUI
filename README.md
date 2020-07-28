@@ -1,4 +1,4 @@
-## spotidl_GUI-alpha
+## spotdl_GUI-alpha
 A Graphical User Interface for spotify-downloader by ritiek.
 
 # Note:
