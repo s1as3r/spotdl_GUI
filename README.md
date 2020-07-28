@@ -4,7 +4,8 @@ A Graphical User Interface for [spotify-downloader](https://github.com/ritiek/sp
 # Note:
 This Script is a work in progress. </br>
 It barely Works But Gets the job done.</br>
-
+</br>
+# :exclamation: Python 3.6+ Is required for the script to work.
 
 ## Known Issues/Cavets:
 1. Shows Download Complete dialog even if download wasn't able to complete.</br>
