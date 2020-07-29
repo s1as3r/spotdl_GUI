@@ -61,7 +61,7 @@ def Browse():
 # Function For Download Button
 def Download():
     system(
-        f'spotdl -{link_type.get()[0]} {song_link.get()} -f "{download_Path.get()} -ll {log.get()}"')
+        f'spotdl -{link_type.get()[0]} {song_link.get()} -f "{download_Path.get()}" -ll={log.get()}')
     messagebox.showinfo(message=f"Song(s)/text file saved to {download_Path.get()}\n"
                         "Check Console For Errors/Logs")
 
