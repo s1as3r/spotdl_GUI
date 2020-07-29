@@ -3,14 +3,17 @@ from tkinter import messagebox, filedialog
 from os import system
 import tkinter as tk
 from tkinter import *
+import sys
 
 
 # Installs Spotify-downloader if not installed already.
 try:
     import spotdl
 except:
-    print('spotdl Not Found, Downloading Now!')
-    system('pip install -U spotdl')
+    if input("Spotdl not found, download now? (y/n)").lower() == 'y':
+        system('pip install -U spotdl')
+    else:
+        sys.exit()
 
 
 def Widgets():
