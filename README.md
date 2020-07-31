@@ -1,4 +1,4 @@
-## spotdl_GUI-alpha
+## spotdl_GUI
 A Simple Graphical User Interface for [spotify-downloader](https://github.com/ritiek/spotify-downloader) by [ritiek](https://github.com/ritiek).
 
 # Usage:
