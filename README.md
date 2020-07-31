@@ -3,7 +3,7 @@ A Graphical User Interface for [spotify-downloader](https://github.com/ritiek/sp
 
 # Usage:
 Run spotdl_gui.py, Enter song/playlist.album link, select appropriate options and click Download.</br>
-Log Will be displayed in thhe console.
+Log Will be displayed in the console.
 </br>
 **:exclamation: Python 3.6+ Is required for the script to work.**
 
