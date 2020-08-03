@@ -1,7 +1,13 @@
 # NECESSARY IMPORTS
-
-# Installs Spotify-downloader if not installed already.
 from os import system
+import tkinter as tk
+from tkinter import *
+import sys
+from tkinter import messagebox, filedialog
+import sys
+from threading import Thread
+
+# Install Spotify-downloader if not installed already.
 try:
     import spotdl
 except:
@@ -10,18 +16,9 @@ except:
     else:
         sys.exit()
         
-from tkinter import messagebox, filedialog
-import sys
-import spotdl
 from spotdl import Spotdl, util
 from spotdl.authorize.services import AuthorizeSpotify
 from spotdl.helpers.spotify import SpotifyHelpers
-import tkinter as tk
-from tkinter import *
-import sys
-from threading import Thread
-
-
 
 
 helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id='4fe3fecfe5334023a1472516cc99d805',
@@ -74,27 +71,30 @@ def Widgets():
     opt = tk.OptionMenu(root, log, *logList)
     opt.config(width=10, bg="#05E8E0")
     opt.grid(row=5, column=1, pady=3, padx=3)
-
+    
+    # State of the Script (Downloading/Completed Download)
     global log_widget
     log_widget = Text(master=root, height=1, width=50)
     log_widget.grid(row=8, columnspan=3, padx=3, pady=3)
     log_widget.configure(state='disabled')
     
 
-
+# Function for getting the logs.
 def logs():
     print(util.install_logger(level=log.get()))
-
-
+    
+# Running logs function on a different thread. Else, the UI would freeze.
 printLog = Thread(target=logs)
 
 
+# Prints downloading onto the status widget.
 def logwrite_begin():
     log_widget.configure(state='normal')
     log_widget.insert(END, 'Downloading, Check Console For Logs/Progress')
     log_widget.configure(state='disabled')
 
-
+    
+# Prints download complete onto the status widget.
 def logwrite_end():
     log_widget.configure(state='normal')
     log_widget.delete(1.0, END)
@@ -102,15 +102,14 @@ def logwrite_end():
         END, "Download Complete, Check Console for Logs/Errors.")
     log_widget.configure(state='disabled')
 
-# Function For Browse Button
 
-
+# Function for the browse button.
 def Browse():
     download_Directory = filedialog.askdirectory(
         initialdir="YOUR DIRECTORY PATH")
     download_Path.set(download_Directory)
 
-
+# Function for downloading a single track.
 def song():
     logwrite_begin()
     printLog.start()
@@ -122,6 +121,7 @@ def song():
     downloader.start()
 
 
+# Function for downloading an album.
 def album():
     logwrite_begin()
     printLog.start()
@@ -135,6 +135,7 @@ def album():
     downloader.start()
 
 
+# Function for downloading a Playlist.
 def playlist():
     logwrite_begin()
     printLog.start()
@@ -147,7 +148,8 @@ def playlist():
     downloader = Thread(target=download)
     downloader.start()
 
-
+    
+# Function for downloading a list of songs from a .txt file.
 def textlist():
     logwrite_begin()
     printLog.start()
@@ -158,7 +160,8 @@ def textlist():
     downloader = Thread(target=download)
     downloader.start()
 
-
+    
+# Function for the download button.
 def Download():
     global spotdl_instance
 
@@ -172,6 +175,7 @@ def Download():
         playlist()
     elif link_type.get() == 'album':
         album()
+
 
 
 root = tk.Tk()
