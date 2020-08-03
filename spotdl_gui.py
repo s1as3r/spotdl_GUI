@@ -1,4 +1,14 @@
 # NECESSARY IMPORTS
+
+# Installs Spotify-downloader if not installed already.
+try:
+    import spotdl
+except:
+    if input("Spotdl not found, download now? (y/n)").lower() == 'y':
+        system('pip install -U spotdl')
+    else:
+        sys.exit()
+        
 from tkinter import messagebox, filedialog
 from os import system
 import sys
@@ -11,14 +21,7 @@ from tkinter import *
 import sys
 from threading import Thread
 
-# Installs Spotify-downloader if not installed already.
-try:
-    import spotdl
-except:
-    if input("Spotdl not found, download now? (y/n)").lower() == 'y':
-        system('pip install -U spotdl')
-    else:
-        sys.exit()
+
 
 
 helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id='4fe3fecfe5334023a1472516cc99d805',
