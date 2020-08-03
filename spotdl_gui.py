@@ -1,6 +1,7 @@
 # NECESSARY IMPORTS
 
 # Installs Spotify-downloader if not installed already.
+from os import system
 try:
     import spotdl
 except:
@@ -10,7 +11,6 @@ except:
         sys.exit()
         
 from tkinter import messagebox, filedialog
-from os import system
 import sys
 import spotdl
 from spotdl import Spotdl, util
