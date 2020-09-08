@@ -42,12 +42,18 @@ u_client_secret = ''
 try:
     # Attempt to locate spotify secret keys from a local spotify_keys.txt file
     with open("spotify_keys.txt", "r+") as keys:
-        print(bcolors.OKGREEN + "Success: Found local spotify keys!" + bcolors.ENDC)
         contents = keys.readlines()
-        contents = [key.strip() for key in contents] # Removal of newlines
-        u_client_id = contents[0]
-        u_client_secret = contents[1]
-        
+        if contents:
+            contents = [key.strip() for key in contents] # Removal of newlines
+            try:
+                u_client_id = contents[0]
+                u_client_secret = contents[1]
+                print(bcolors.OKGREEN + "Success: Found local spotify keys!" + bcolors.ENDC)
+            except IndexError:
+                raise FileNotFoundError
+        else:
+            raise FileNotFoundError
+            
 except FileNotFoundError:
     # If keys are not found, allow the user to obtain the keys from spotify
     print(bcolors.WARNING + "Warning: You are missing the client_id/secret which is required for the album/playlist features" + bcolors.ENDC)
