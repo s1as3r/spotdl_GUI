@@ -61,7 +61,7 @@ except FileNotFoundError:
     print("https://developer.spotify.com/dashboard/applications\n")
 
     # User is able to proceed without keys, which will limit some features
-    if(input("Do you wish to proceed without the keys? (y/n): ").lower()[0] == "n"):
+    if(input("Enter keys manually? (y/n): ").lower()[0] == "y"):
 
         # Note: Create a first call to the /autorize endpoint to validate if an API token was retrieved?
         u_client_id = input("Enter your client id:")
