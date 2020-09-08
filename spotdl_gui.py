@@ -20,10 +20,58 @@ from spotdl import Spotdl, util
 from spotdl.authorize.services import AuthorizeSpotify
 from spotdl.helpers.spotify import SpotifyHelpers
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
-helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id='4fe3fecfe5334023a1472516cc99d805',
-                                                          client_secret='0f02b7c483c04257984695007a4a8d5c'))
 
+# -- As per Spotfiy API documentation --
+# Make sure that you safeguard your application Client Secret at all times.
+# Be aware, for example, that if you commit your code to a public repository like GitHub
+# you will need to remove the Client Secret from your code before doing so.
+u_client_id = ''
+u_client_secret = ''
+
+
+try:
+    # Attempt to locate spotify secret keys from a local spotify_keys.txt file
+    with open("spotify_keys.txt", "r+") as keys:
+        print(bcolors.OKGREEN + "Success: Found local spotify keys!" + bcolors.ENDC)
+        contents = keys.readlines()
+        contents = [key.strip() for key in contents] # Removal of newlines
+        u_client_id = contents[0]
+        u_client_secret = contents[1]
+        
+except FileNotFoundError:
+    # If keys are not found, allow the user to obtain the keys from spotify
+    print(bcolors.WARNING + "Warning: You are missing the client_id/secret which is required for the album/playlist features" + bcolors.ENDC)
+    print(bcolors.WARNING + "You can obtain these keys by creating a quick app with Spotify" + bcolors.ENDC)
+    print("https://developer.spotify.com/dashboard/applications\n")
+
+    # User is able to proceed without keys, which will limit some features
+    if(input("Do you wish to proceed without the keys? (y/n): ").lower()[0] == "n"):
+
+        # Note: Create a first call to the /autorize endpoint to validate if an API token was retrieved?
+        u_client_id = input("Enter your client id:")
+        u_client_secret = input("Enter your client secret:")
+
+        # Keys will be saved for the future in a local text file
+        with open("spotify_keys.txt", "w") as keys:
+            keys.writelines([u_client_id + "\n", u_client_secret])
+        print(bcolors.OKGREEN + "Success: Your keys were saved for future use!" + bcolors.ENDC)
+        
+    else:
+        print(bcolors.WARNING + "Warning: Without keys some features may not work as expected!" + bcolors.ENDC)
+except:
+    raise
+
+helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id=u_client_id, client_secret=u_client_secret))
 
 def Widgets():
     # Link Box
