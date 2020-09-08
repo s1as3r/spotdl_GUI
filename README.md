@@ -10,3 +10,5 @@ A Simple Graphical User Interface for [spotify-downloader](https://github.com/ri
 </br>
 **:exclamation: Python 3.6+ Is required for the script to work.**
 
+**This is How the GUI and the LOGS look like:**</br>
+![](<img src="https://i.ibb.co/Wtb1BHp/GUI.png" alt="GUI" border="0">)
