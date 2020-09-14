@@ -23,7 +23,7 @@ if os.name == 'nt':
     try:   
         import colorama
     except:
-        print("Für die korrekte Darstellung der Textfarben wird Coloramer benötigt! Installiere Coloramer ...")
+        print("Coloramer is required for the correct display of the text colors! Installing Coloramer ...")
         system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
 
         
