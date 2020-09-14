@@ -80,16 +80,24 @@ except:
 
 helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id=u_client_id, client_secret=u_client_secret))
 
+# Prefill download path
+import os
+from pathlib import Path
+location = str(os.path.join(Path.home(), "Downloads"))
+
+
 def Widgets():
     # Link Box
     link_label = Label(root, text="Spotify Link :", bg="#E8D579")
     link_label.grid(row=1, column=0, pady=5, padx=5)
     root.linkText = Entry(root, width=55, textvariable=song_link)
     root.linkText.grid(row=1, column=1, pady=5, padx=5, columnspan=2)
+    root.linkText.focus_set() 
 
     # Directory Selector and Browse Button
     destination_label = Label(root, text="Destination   :", bg="#E8D579")
     destination_label.grid(row=2, column=0, pady=5, padx=5)
+    download_path.set(location) 
     root.destinationText = Entry(root, width=40, textvariable=download_Path)
     root.destinationText.grid(row=2, column=1, pady=5, padx=5)
     browse_B = Button(root, text="Browse", command=Browse,
