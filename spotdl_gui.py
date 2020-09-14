@@ -12,7 +12,7 @@ try:
     import spotdl
 except:
     if input("Spotdl not found, download now? (y/n)").lower() == 'y':
-        system('pip install -U spotdl')
+        system('pip3 install -U spotdl')
     else:
         sys.exit()
 
