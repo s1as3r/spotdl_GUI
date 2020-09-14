@@ -15,7 +15,18 @@ except:
         system('pip3 install -U spotdl')
     else:
         sys.exit()
+        
+# Install colorama if Windows OS is used and no colorama is installed already.
+import os
 
+if os.name == 'nt':
+    try:   
+        import colorama
+    except:
+        print("Für die korrekte Darstellung der Textfarben wird Coloramer benötigt! Installiere Coloramer ...")
+        system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
+
+        
 from spotdl import Spotdl, util
 from spotdl.authorize.services import AuthorizeSpotify
 from spotdl.helpers.spotify import SpotifyHelpers
@@ -81,7 +92,6 @@ except:
 helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id=u_client_id, client_secret=u_client_secret))
 
 # Prefill download path
-import os
 from pathlib import Path
 location = str(os.path.join(Path.home(), "Downloads"))
 
