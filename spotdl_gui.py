@@ -97,7 +97,7 @@ def Widgets():
     # Directory Selector and Browse Button
     destination_label = Label(root, text="Destination   :", bg="#E8D579")
     destination_label.grid(row=2, column=0, pady=5, padx=5)
-    download_path.set(location) 
+    download_Path.set(location) 
     root.destinationText = Entry(root, width=40, textvariable=download_Path)
     root.destinationText.grid(row=2, column=1, pady=5, padx=5)
     browse_B = Button(root, text="Browse", command=Browse,
