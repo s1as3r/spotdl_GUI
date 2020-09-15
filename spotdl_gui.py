@@ -11,7 +11,7 @@ from threading import Thread
 try:
     import spotdl
 except:
-    if input("Spotdl not found, download now? (y/n)").lower() == 'y':
+    if input("Spotdl not found, download now? (y/n)").lower()[0] == 'y':
         system('pip3 install -U spotdl')
     else:
         sys.exit()
@@ -23,8 +23,11 @@ if os.name == 'nt':
     try:   
         import colorama
     except:
-        print("Coloramer is required for the correct display of the text colors! Installing Coloramer ...")
-        system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
+        print("Colorama is required for the correct display of the text colors!")
+        if input('Would you like to install colorama? (y/n)').lower()[0] == 'y':
+            system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
+        else:
+            sys.exit()
 
         
 from spotdl import Spotdl, util
