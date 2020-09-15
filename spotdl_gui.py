@@ -12,10 +12,21 @@ try:
     import spotdl
 except:
     if input("Spotdl not found, download now? (y/n)").lower() == 'y':
-        system('pip install -U spotdl')
+        system('pip3 install -U spotdl')
     else:
         sys.exit()
+        
+# Install colorama if Windows OS is used and no colorama is installed already.
+import os
 
+if os.name == 'nt':
+    try:   
+        import colorama
+    except:
+        print("Coloramer is required for the correct display of the text colors! Installing Coloramer ...")
+        system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
+
+        
 from spotdl import Spotdl, util
 from spotdl.authorize.services import AuthorizeSpotify
 from spotdl.helpers.spotify import SpotifyHelpers
@@ -80,16 +91,23 @@ except:
 
 helper_instance = SpotifyHelpers(spotify=AuthorizeSpotify(client_id=u_client_id, client_secret=u_client_secret))
 
+# Prefill download path
+from pathlib import Path
+location = str(os.path.join(Path.home(), "Downloads"))
+
+
 def Widgets():
     # Link Box
     link_label = Label(root, text="Spotify Link :", bg="#E8D579")
     link_label.grid(row=1, column=0, pady=5, padx=5)
     root.linkText = Entry(root, width=55, textvariable=song_link)
     root.linkText.grid(row=1, column=1, pady=5, padx=5, columnspan=2)
+    root.linkText.focus_set() 
 
     # Directory Selector and Browse Button
     destination_label = Label(root, text="Destination   :", bg="#E8D579")
     destination_label.grid(row=2, column=0, pady=5, padx=5)
+    download_Path.set(location) 
     root.destinationText = Entry(root, width=40, textvariable=download_Path)
     root.destinationText.grid(row=2, column=1, pady=5, padx=5)
     browse_B = Button(root, text="Browse", command=Browse,
