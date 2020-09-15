@@ -26,6 +26,7 @@ if os.name == 'nt':
         print("Colorama is required for the correct display of the text colors!")
         if input('Would you like to install colorama? (y/n)').lower()[0] == 'y':
             system('pip3 install colorama') # NEEDED FOR WINDOWS to work with ANSI escape codes
+            colorama.init()
         else:
             sys.exit()
 
