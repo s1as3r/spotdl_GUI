@@ -1,11 +1,11 @@
 # NECESSARY IMPORTS
 from os import system
-import tkinter as tk
-from tkinter import *
-import sys
-from tkinter import messagebox, filedialog
 import sys
 from threading import Thread
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox, filedialog
+
 
 # Install Spotify-downloader if not installed already.
 try:
