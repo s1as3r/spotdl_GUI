@@ -1,4 +1,7 @@
-## spotdl_GUI
+# spotdl_GUI
+## Obsolete
+After (spotDL v3 rework)[https://github.com/spotDL/spotify-downloader/pull/812], this script will not work.
+
 A Simple Graphical User Interface for [spotify-downloader](https://github.com/ritiek/spotify-downloader) by [ritiek](https://github.com/ritiek).
 
 # Usage:
